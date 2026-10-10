@@ -1,0 +1,22 @@
+model = "gpt-test"
+model_provider = "old"
+model_reasoning_effort = "medium"
+
+# [model_providers.fake] inside a comment must survive
+[model_providers.old]
+name = "Old"
+base_url = "https://example.com/v1"
+wire_api = "responses"
+
+[model_providers.old.auth]
+command = "/usr/bin/security"
+args = ["find-generic-password", "-a", "user", "-s", "old-key", "-w"]
+
+[projects."/tmp/example"]
+trust_level = "trusted"
+
+[features]
+js_repl = false
+
+[mcp_servers.demo]
+command = "/usr/bin/true"
